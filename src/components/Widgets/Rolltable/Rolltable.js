@@ -66,18 +66,20 @@ export default class Rolltable extends Component {
               </div>
               <div>
                 <ul className="flex-initial flex flex-wrap justify-center items-start pt-1 pr-1 -mb-1 -ml-1">
-                  {showDebug == "true" && (<li className="mb-1 ml-1">
-                    <button
-                      className="btn-action-outline text-xs flex justify-center items-center rounded-full"
-                      id={`rolltable-${tableName}-debug`}
-                      onClick={this.toggleDebug}
-                    >
-                      <span className="sr-only">
-                        {this.state.debug ? "Open" : "Hide"} Debugger
-                      </span>
-                      {this.state.debug ? <FaSprayCan /> : <FaBug />}
-                    </button>
-                  </li>)}
+                  {showDebug && (
+                    <li className="mb-1 ml-1">
+                      <button
+                        className="btn-action-outline text-xs flex justify-center items-center rounded-full"
+                        id={`rolltable-${tableName}-debug`}
+                        onClick={this.toggleDebug}
+                      >
+                        <span className="sr-only">
+                          {this.state.debug ? "Open" : "Hide"} Debugger
+                        </span>
+                        {this.state.debug ? <FaSprayCan /> : <FaBug />}
+                      </button>
+                    </li>
+                  )}
                   <li className="mb-1 ml-1">
                     {this.state.fileData && (
                       <button
@@ -140,13 +142,15 @@ export default class Rolltable extends Component {
             className="flex justify-center p-0 m-0 mt-4 bg-tertiary-200"
           >
             <ul className="flex flex-wrap justify-start align-center p-0 m-0 pt-2 pr-2">
-              {allowUpload === "true" && (<li className="mb-2 ml-2">
-                <CSVUpload
-                  table={tableName}
-                  debug={this.state.debug}
-                  updateData={this.updateData}
-                />
-              </li>)}
+              {allowUpload === "true" && (
+                <li className="mb-2 ml-2">
+                  <CSVUpload
+                    table={tableName}
+                    debug={this.state.debug}
+                    updateData={this.updateData}
+                  />
+                </li>
+              )}
 
               {this.state.fileData && (
                 <li className="mb-2 ml-2">
@@ -167,13 +171,17 @@ export default class Rolltable extends Component {
           </menu>
 
           {this.state.fileData && (
-            <div className={this.state.collapse ? ("pt-2 w-full") : ("pt-2 w-full hidden")}>
-            {/* <div className="pt-2 w-full"> */}
+            <div
+              className={
+                this.state.collapse ? "pt-2 w-full" : "pt-2 w-full hidden"
+              }
+            >
+              {/* <div className="pt-2 w-full"> */}
               <p className="px-4 text-center text-xs italic">
                 <strong>Note:</strong> Click on any header to reroll for that
                 column.
               </p>
-                <CSVTable name={tableName} data={this.state.fileData}/>
+              <CSVTable name={tableName} data={this.state.fileData} />
             </div>
           )}
         </div>
