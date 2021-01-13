@@ -1,13 +1,13 @@
 {
-    "name": "gatsby-starter-theme-workspace",
     "private": true,
-    "version": "0.0.1",
-    "main": "index.js",
-    "scripts": {
-        "build": "yarn workspace site build"
-    },
     "workspaces": [
-        "gatsby-theme-events",
+        "gatsby-theme-platen",
         "site"
-    ]
+    ],
+    "scripts": {
+        "build": "yarn workspace gatsby-theme-platen build",
+        "start": "yarn workspace gatsby-theme-platen start",
+        "all:outdated": "yarn outdated",
+        "all:upgrade": "yarn upgrade-interactive --latest"
+    }
 }
